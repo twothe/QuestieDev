@@ -453,7 +453,7 @@ function Questie:hookTooltip()
 		if monster then
 			for k,v in pairs(QuestieCurrentQuests) do
 				local obj = v['objectives'];
-				if not (obj == nil) then --- bad habit I know...
+				if (obj) then 
 					for l,m in pairs(obj) do
 						if m['type'] == "monster" then
 							if (monster .. " slain") == m['name'] or monster == m['name'] then
@@ -1213,7 +1213,7 @@ end
 function Questie:CHAT_MSG_SYSTEM(message)
 	--log(message, 1)
 	local index = findLast(message, ":");
-	if tonumber(index) == 15 then -- quest accepted
+	if (index and (tonumber(index) == 15)) then -- quest accepted
 		local questName = string.sub(message, index+2);
 		--log("Accepted " .. questName, 1)
 		Questie:removeAvailableMarker(questName)
