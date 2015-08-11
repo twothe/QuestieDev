@@ -531,10 +531,8 @@ function Questie:mixInt(hash, addval)
 end
 
 function Questie:getQuestHash(name, level, objectiveText)
-
-	
 	local questLookup = QuestieLevLookup[name];
-	if not (questLookup == nil) then -- cant... stop... doingthis....
+	if (questLookup) then
 		--log("QN " .. name .. " is NULL", 1);
 		local count = 0;
 		local retval = 0;

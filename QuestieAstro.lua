@@ -400,12 +400,14 @@ function Questie:Tooltip(this, forceShow, bag, slot) -- this function is making 
 					if m[1] and (m[1]['type'] == "monster" or m[1]['type'] == "slay") then
 						if (monster .. " slain") == name or monster == name or monster == string.find(monster, string.len(monster)-6) then
 							local logid = Questie:GetQuestIdFromHash(k);
-							SelectQuestLogEntry(logid);
-							local desc, typ, done = GetQuestLogLeaderBoard(m[1]['objectiveid']);
-							local indx = findLast(desc, ":");
-							local countstr = string.sub(desc, indx+2);
-							GameTooltip:AddLine(v['objectives']['QuestName'], 0.2, 1, 0.3)
-							GameTooltip:AddLine("   " .. monster .. ": " .. countstr, 1, 1, 0.2)
+              if (logid) then 
+                SelectQuestLogEntry(logid);
+                local desc, typ, done = GetQuestLogLeaderBoard(m[1]['objectiveid']);
+                local indx = findLast(desc, ":");
+                local countstr = string.sub(desc, indx+2);
+                GameTooltip:AddLine(v['objectives']['QuestName'], 0.2, 1, 0.3)
+                GameTooltip:AddLine("   " .. monster .. ": " .. countstr, 1, 1, 0.2)
+              end
 						end
 						--NOT DONE
 					elseif m[1] and (m[1]['type'] == "item" or m[1]['type'] == "loot") then --Added Loot here? should it be here?
